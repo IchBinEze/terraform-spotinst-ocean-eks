@@ -1,5 +1,5 @@
 resource "spotinst_ocean_aws" "this" {
-  count      = var.create_ocean ? 1 : 0
+	
   depends_on = [module.eks]
 
   name                        = local.cluster_name
@@ -56,11 +56,9 @@ EOF
 }
 
 module "ocean-controller" {
-  source     = "spotinst/ocean-controller/spotinst"
-  version    = "~> 0.28"
+  source     = "./ocean-controller"
   depends_on = [module.eks]
 
-  create_controller  = var.create_ocean
   spotinst_token     = var.spotinst_token
   spotinst_account   = var.spotinst_account
   controller_image   = var.controller_image
