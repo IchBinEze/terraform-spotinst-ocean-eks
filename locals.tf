@@ -24,9 +24,7 @@ locals {
   )
 
   ocean_cluster_id = (
-    var.create_ocean
-    ? element(concat(spotinst_ocean_aws.this.*.id, [""]), 0)
-    : null
+    element(concat(spotinst_ocean_aws.this.*.id, [""]), 0)
   )
 
   ocean_controller_id = (

@@ -502,12 +502,6 @@ variable "blacklist" {
   default     = null
 }
 
-variable "create_ocean" {
-  type        = bool
-  description = "Controls whether Ocean should be created (it affects all Ocean resources)"
-  default     = true
-}
-
 variable "spot_percentage" {
   type        = number
   description = "Sets the percentage of nodes that should be Spot (vs On-Demand) in the cluster"
@@ -541,3 +535,22 @@ variable "image_pull_policy" {
 }
 
 // endregion
+
+variable "launch_specs" {
+
+    description = "launch specs for node groups"
+
+    type = list(object({
+
+        name               = string
+        image_id           = string
+        root_volume_size   = number
+        max_instance_count = number
+        instance_types     = list(string)
+        spot_percentage    = number
+        tags               = map(string)
+        labels             = map(string)
+
+    }))
+
+}
